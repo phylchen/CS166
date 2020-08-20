@@ -305,7 +305,25 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1
+		try{
+			String query = String.format("SELECT id FROM Customer"); //begin list
 		
+			int addId = data.size()+1; //increment 1 on list 
+			System.out.print("First name: "); //user prompt
+			String newFirstName = in.readline(); //user input
+			System.out.print("Last name: ");
+			String newLastName = in.readline();
+			System.out.print("Phone Number: ");
+			String newPhone = in.readline();
+			System.out.print("Address: ");
+			String newAddress = in.readline();
+		
+			String query2 = String.format("INSERT INTO Customer(id, fname, lname, phone, address) VALUES("??"))
+		
+			esql.executeUpdate(query2);
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	public static void AddMechanic(MechanicShop esql){//2
