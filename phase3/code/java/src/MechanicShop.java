@@ -380,7 +380,8 @@ public class MechanicShop{
         
         		String getName = "Select fname, lname, id From Customer Where lname = '" + lname + "'";
 
-        		List<List<String>> nameResults = esql.executeQueryAndPrintResult(getName);
+        		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
+			System.out.println(nameResults);
   
         		if (esql.executeQuery(getName) == 0) {
         			System.out.print("ERROR: Customer not found");
@@ -393,8 +394,9 @@ public class MechanicShop{
           
             
         		String getCar = "SELECT car_vin FROM Owns WHERE customer_id = " + custId;
-			List<List<String>> carResult = esql.executeQueryAndPrintResult(getCar);
-          
+			List<List<String>> carResult = esql.executeQueryAndReturnResult(getCar);
+          		System.out.println(carResult);
+
         		String UserDecision = "";
         		while(!UserDecision.equals("0") && !UserDecision.equals("0"))
         		{
@@ -443,7 +445,7 @@ public class MechanicShop{
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
 		try{
 			String query = "SELECT CR.date, CR.comment, CR.bill FROM Closed_Request CR WHERE CR.bill < 100;";
-			int result = esql.executeQueryAndPrintResult(result);
+			int  result = esql.executeQueryAndPrintResult(result);
 			System.out.println("total row(s): " + result);
 		}
 		catch(Exception e){
