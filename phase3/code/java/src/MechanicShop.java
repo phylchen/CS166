@@ -377,16 +377,27 @@ public class MechanicShop{
 		
 	}
 	
-	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
-		
+	public static void CloseServiceRequest(MechanicShop esql){//5	
+	
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
-		
+		try{
+			String query = "SELECT CR.date, CR.comment, CR.bill FROM Closed_Request CR WHERE CR.bill < 100;";
+			int result = esql.executeQueryAndPrintResult(result);
+			System.out.println("total row(s): " + result);
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
-		
+		try{
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}		
 	}
 	
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
