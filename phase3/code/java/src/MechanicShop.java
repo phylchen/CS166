@@ -306,38 +306,42 @@ public class MechanicShop{
 	
 	public static void AddCustomer(MechanicShop esql){//1
 		try {
-                	System.out.print("First name: "); 
-                	String fname = in.readline();
+                	System.out.print("Create ID: ");
+                        String id = in.readLine();
+			System.out.print("First name: "); 
+                	String fname = in.readLine();
 			System.out.print("Last name: ");
-			String lname = in.readline();
+			String lname = in.readLine();
 			System.out.print("Phone Number: ");
-			String phone = in.readline();
+			String phone = in.readLine();
 			System.out.print("Address: ");
-			String address = in.readline();
+			String address = in.readLine();
 
-			String customerInfo = "INSERT INTO Customer (fname, lname, phone, address) VALUES ('" + fname + "' , '" + lname + "' , '" + phone + "' , '" + address + "')";
+			String customerInfo = "INSERT INTO Customer VALUES ('" +  id + "' , '" + fname + "' , '" + lname + "' , '" + phone + "' , '" + address + "')";
 			
 			esql.executeUpdate(customerInfo);
 		}
-		catch (Excetion e) {
+		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}	
 		
 	public static void AddMechanic(MechanicShop esql){//2
 		try {
+			System.out.print("Create ID: ");
+                        String id = in.readLine();
                         System.out.print("First name: ");
-                        String fname = in.readline();
+                        String fname = in.readLine();
                         System.out.print("Last name: ");
-                        String lname = in.readline();
+                        String lname = in.readLine();
                         System.out.print("Years of experience: ");
-                        String experience = in.readline();
+                        String experience = in.readLine();
 
-                        String mechanicInfo = "INSERT INTO Mechanic (fname, lname, experiene) VALUES ('" + fname + "' , '" + lname + "' , " + experience + ")";
+                        String mechanicInfo = "INSERT INTO Mechanic VALUES ('" + id + "' , '"  + fname + "' , '" + lname + "' , " + experience + ")";
 
                         esql.executeUpdate(mechanicInfo);
                 }
-                catch (Excetion e) {
+                catch (Exception e) {
                         System.out.println(e.getMessage());
                 }
 	}
@@ -345,10 +349,10 @@ public class MechanicShop{
 	public static void AddCar(MechanicShop esql){//3
 		try{
 			System.out.print("VIN: ");
-			string vin = in.readline();
-			string validateVin = "SELECT * FROM Car WHERE Car.vin = '" + vin "'";
+			String vin = in.readLine();
+			String validateVin = "SELECT * FROM Car WHERE Car.vin = '" + vin +  "'";
 
-			if(esql.executeQuery(validateVin) > 0 {
+			if(esql.executeQuery(validateVin) > 0) {
 				System.out.println("The vin you inputted already exists");
 			return;
 			}
