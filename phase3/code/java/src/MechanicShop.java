@@ -374,8 +374,67 @@ public class MechanicShop{
 	}		
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4
-		
+	        try {
+        		System.out.print("Enter last name: ");
+        		String lname = in.readLine();
+        
+        		String getName = "Select fname, lname, id From Customer Where lname = '" + lname + "'";
+
+        		List<List<String>> nameResults = esql.executeQueryAndPrintResult(getName);
+  
+        		if (esql.executeQuery(getName) == 0) {
+        			System.out.print("ERROR: Customer not found");
+        			AddCustomer(esql); 
+        			return;        
+        		}
+       
+			System.out.println ("Choose a customer id: ");
+            		String custId = in.readLine();
+          
+            
+        		String getCar = "SELECT car_vin FROM Owns WHERE customer_id = " + custId;
+			List<List<String>> carResult = esql.executeQueryAndPrintResult(getCar);
+          
+        		String UserDecision = "";
+        		while(!UserDecision.equals("0") && !UserDecision.equals("0"))
+        		{
+            		System.out.print("Enter 0 to choose a listed car OR enter 1 to add a new car\n");
+            		UserDecision = in.readLine();
+   			}
+        		String vin  = "";
+            
+    			if (UserDecision.equals("1"))
+      			{
+        			AddCar(esql);
+        			return;
+		        }
+        		else if(UserDecision.equals("0"))
+        		{
+
+            		System.out.println ("Choose vin: ");
+            		vin = in.readLine();
+        
+            		System.out.println ("Create new service request: ");
+            
+            		System.out.println("Enter date: ");
+            		String date = in.readLine();
+             
+            		System.out.println("Enter odometer reading: ");
+            		String odometer = in.readLine();
+             
+			System.out.println("Enter complaint: ");
+         		String complaint = in.readLine();
+             
+            		String query = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer, complain) VALUES ( " + "'" + custId + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
+            		esql.executeUpdate(query);
+        		}  
+            
+      		  } catch(Exception e){
+           		 System.err.println (e.getMessage());
+        	  }
+        
 	}
+
 	
 	public static void CloseServiceRequest(MechanicShop esql){//5	
 	
