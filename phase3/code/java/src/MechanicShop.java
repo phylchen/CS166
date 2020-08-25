@@ -305,29 +305,40 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1
-		try{
-			String query = String.format("SELECT id FROM Customer"); //begin list
-		
-			int addId = data.size()+1; //increment 1 on list 
-			System.out.print("First name: "); //user prompt
-			String newFirstName = in.readline(); //user input
+		try {
+                	System.out.print("First name: "); 
+                	String fname = in.readline();
 			System.out.print("Last name: ");
-			String newLastName = in.readline();
+			String lname = in.readline();
 			System.out.print("Phone Number: ");
-			String newPhone = in.readline();
+			String phone = in.readline();
 			System.out.print("Address: ");
-			String newAddress = in.readline();
-		
-			String query2 = String.format("INSERT INTO Customer(id, fname, lname, phone, address) VALUES("??"))
-		
-			esql.executeUpdate(query2);
-		}catch(Exception e){
-			System.err.println(e.getMessage());
+			String address = in.readline();
+
+			String customerInfo = "INSERT INTO Customer (fname, lname, phone, address) VALUES ('" + fname + "' , '" + lname + "' , '" + phone + "' , '" + address + "')";
+			
+			esql.executeUpdate(customerInfo);
 		}
-	}
-	
-	public static void AddMechanic(MechanicShop esql){//2
+		catch (Excetion e) {
+			System.out.println(e.getMessage());
+		}
+	}	
 		
+	public static void AddMechanic(MechanicShop esql){//2
+		try {
+                        System.out.print("First name: ");
+                        String fname = in.readline();
+                        System.out.print("Last name: ");
+                        String lname = in.readline();
+                        System.out.print("Years of experience: ");
+                        String experience = in.readline();
+                        String mechanicInfo = "INSERT INTO Mechanic (fname, lname, experiene) VALUES ('" + fname + "' , '" + lname + "' , " + experience + ")";
+
+                        esql.executeUpdate(mechanicInfo);
+                }
+                catch (Excetion e) {
+                        System.out.println(e.getMessage());
+                }
 	}
 	
 	public static void AddCar(MechanicShop esql){//3
