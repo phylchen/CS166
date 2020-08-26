@@ -483,8 +483,15 @@ public class MechanicShop{
 	}
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
-		//
-		
+		try{
+			String query = "SELECT C.fname , C.lname, total_bill FROM Customer C, (SELECT SR.customer_id, SUM(CR.bill) AS total_bill FROM Closed_Request CR, Service_Request SR WHERE CR.rid = SR.rid GROUP BY SR.customer_id) AS tmp WHERE C.id = tmp.customer_id ORDER BY tmp.total_bill DESC";
+
+		int result = esql.executeQueryAndPrintResult(query);
+                        System.out.println("result: " + result);
+                }
+                catch(Exception e){
+                        System.out.println(e.getMessage());
+                }		
 	}
 	
 }
