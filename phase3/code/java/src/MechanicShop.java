@@ -445,8 +445,8 @@ public class MechanicShop{
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
 		try{
 			String query = "SELECT CR.date, CR.comment, CR.bill FROM Closed_Request CR WHERE CR.bill < 100;";
-			int  result = esql.executeQueryAndPrintResult(result);
-			System.out.println("total row(s): " + result);
+			int result = esql.executeQueryAndPrintResult(query);
+			System.out.println("result: " + result);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -455,6 +455,10 @@ public class MechanicShop{
 	
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 		try{
+			String query = "SELECT cars.fname, cars.lname, cars.num_of_cars FROM (SELECT O.customer_id, C.fname, C.lname, COUNT(*) num_of_cars FROM Owns O, Customer C WHERE C.id = O.customer_id GROUP BY O.customer_id, C.fname, C.lname) AS cars WHERE num_of_cars > 20";
+
+			int result = esql.executeQueryAndPrintResult(query);
+                        System.out.println("result: " + result);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
