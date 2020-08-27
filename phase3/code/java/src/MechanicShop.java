@@ -391,10 +391,7 @@ public class MechanicShop{
         
         		String getName = "SELECT fname, lname, id FROM Customer WHERE lname = '" + lname + "'";
 
-        		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
-			System.out.println(nameResults);
-  
-        		String UserDecision = "";
+        		
 			
         		if (esql.executeQuery(getName) == 0) {
         			System.out.println("ERROR: Customer not found. Create new customer? Y/N");
@@ -409,11 +406,12 @@ public class MechanicShop{
        
 			System.out.println ("Choose a customer id: ");
             		String custId = in.readLine();
-          
+          		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
+			System.out.println(nameResults);
+  
+        		String UserDecision = "";
             
-        		String getCar = "SELECT car_vin FROM Owns WHERE customer_id = " + custId;
-			List<List<String>> carResult = esql.executeQueryAndReturnResult(getCar);
-          		System.out.println(carResult);
+        		
 
         		while(!UserDecision.equals("0") && !UserDecision.equals("1"))
         		{
@@ -429,9 +427,14 @@ public class MechanicShop{
         		else if(UserDecision.equals("0"))
         		{
 			String vin  = "";
-            		System.out.println ("Choose vin: ");
-            		vin = in.readLine();
-        
+            		
+			String getCar = "SELECT car_vin FROM Owns WHERE customer_id = " + custId;
+			List<List<String>> carResult = esql.executeQueryAndReturnResult(getCar);
+          		System.out.println(carResult);
+			System.out.println ("Choose vin: ");
+            		
+			vin = in.readLine();
+        		
             		System.out.println ("Create new service request: ");
             
             		System.out.println("Enter date: ");
@@ -443,8 +446,8 @@ public class MechanicShop{
 			System.out.println("Enter complaint: ");
          		String complaint = in.readLine();
              
-            		String query = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer, complain) VALUES ( " + "'" + custId + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
-            		esql.executeUpdate(query);
+            		String q = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer, complain) VALUES ('" + custId + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
+            		esql.executeUpdate(q);
         		}  
             
       		  } catch(Exception e){
