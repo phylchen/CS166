@@ -481,7 +481,7 @@ public class MechanicShop{
 				System.out.print("Service request id: ");	
 				String serviceID = in.readLine();
 
-				String existingRequest = "SELECT Service_Request.rid FROM Service_Request WHERE rid = '"+ serviceID +"';";
+				String existingRequest = "SELECT SR.rid FROM Service_Request WHERE rid = '"+ serviceID +"';";
 				if(esql.executeQuery(existingRequest) > 0){
 
 					System.out.print("Enter closing Date: ");
