@@ -320,6 +320,9 @@ public class MechanicShop{
 			String customerInfo = "INSERT INTO Customer VALUES ('" +  id + "' , '" + fname + "' , '" + lname + "' , '" + phone + "' , '" + address + "')";
 			
 			esql.executeUpdate(customerInfo);
+			//ADDED INDEX 
+			String CustomerIndex = "CREATE INDEX custID_index ON Customer (id)";
+			esql.executeUpdate(CustomerIndex);
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -340,6 +343,10 @@ public class MechanicShop{
                         String mechanicInfo = "INSERT INTO Mechanic VALUES ('" + id + "' , '"  + fname + "' , '" + lname + "' , " + experience + ")";
 
                         esql.executeUpdate(mechanicInfo);
+			
+			//ADDED INDEX
+			String MechanicIndex = "CREATE INDEX mechID_index ON Mechanic (id)";
+			esql.executeUpdate(MechanicIndex);
                 }
                 catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -367,6 +374,9 @@ public class MechanicShop{
 	        	String carInfo = "INSERT INTO Car VALUES ('" + vin + "' , '" + make + "' , '" + model + "' , " + year + ")";
 	        
 	        	esql.executeUpdate(carInfo);
+			
+			String CarIndex = "CREATE INDEX carVin_index ON Car (vin)";
+			esql.executeUpdate(CarIndex);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
