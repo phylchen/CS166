@@ -466,10 +466,58 @@ public class MechanicShop{
 	}
 
 	
-	public static void CloseServiceRequest(MechanicShop esql){//5	
-	
-	}
-	
+	public static void CloseServiceRequest(MechanicShop esql) throws Exception {//5
+		try{
+			System.out.print("Enter mechanic id: ");
+			String mechID = in.readLine();
+
+
+			//hello r u there sir mechanic :>
+			String existingMech = "SELECT Mechanic.id FROM Mechanic WHERE Mechanic.id = '"+ mechID +"';";
+			if (esql.executeQuery(existingMech) > 0){
+
+				System.out.print("Service request id: ");	
+				String serviceID = in.readLine();
+
+				String existingRequest = "SELECT Service_Request.rid FROM Service_Request WHERE rid = '"+ serviceID +"';";
+				if(esql.executeQuery(existingRequest) > 0){
+
+					System.out.print("Enter closing Date: ");
+					String closingDate = in.readLine();
+
+					String closeDateOK = "SELECT Service_Request.date FROM Service_Request,Closed_Request WHERE Closed_Request.rid = Service_Request.rid AND Closed_Request.rid = '"+ serviceID +"' AND Closed_Request.date - Service_Request.date < 0;"; //make sure that close-original date is less than 0
+					if(esql.executeQuery(closeDateOK) <= 0){
+
+						System.out.print("Final comments: ");
+						String comment = in.readLine();
+
+						System.out.print("Final bill: ");
+						String bill = in.readLine();
+
+						String closeReq = "INSERT INTO Closed_Request (rid, mid, date, comment, bill) VALUES ( " + "'" + srn + "' , '" + empID + "' , '" + closingDate + "' , '" + comment +  "' ,  '"+bill+"');";
+						esql.executeUpdate(closeReq);
+						return;
+
+					}
+
+					System.out.println("ERROR: closing date invalid");
+					return;
+
+				}
+
+				System.out.println("ERROR: request unavailable");
+					return;
+
+
+			}
+
+			System.out.println("ERROR: mechanic does not exist");
+					return;
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}	
+	} 
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
 		try{
 			String query = "SELECT CR.date, CR.comment, CR.bill FROM Closed_Request CR WHERE CR.bill < 100;";
