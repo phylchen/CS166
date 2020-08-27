@@ -389,7 +389,7 @@ public class MechanicShop{
         		System.out.print("Enter last name: ");
         		String lname = in.readLine();
         
-        		String getName = "Select fname, lname, id From Customer Where lname = '" + lname + "'";
+        		String getName = "SELECT fname, lname, id FROM Customer WHERE lname = '" + lname + "'";
 
         		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
 			System.out.println(nameResults);
@@ -420,13 +420,14 @@ public class MechanicShop{
             		System.out.print("Enter 0 to choose a listed car OR enter 1 to add a new car\n");
             		UserDecision = in.readLine();
    			}
-        		String vin  = "";
-            
-    			if (UserDecision.equals("1"))
+        		if (UserDecision.equals("1"))
       			{
         			AddCar(esql);
         			return;
 		        }
+			String vin  = "";
+            
+    			
         		else if(UserDecision.equals("0"))
         		{
 
