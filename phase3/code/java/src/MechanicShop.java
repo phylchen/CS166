@@ -494,7 +494,7 @@ public class MechanicShop{
 						System.out.print("Final bill: ");
 						String bill = in.readLine();
 
-						String closeReq = "INSERT INTO Closed_Request (rid, mid, date, comment, bill) VALUES ( " + "'" + srn + "' , '" + empID + "' , '" + closingDate + "' , '" + comment +  "' ,  '"+bill+"');";
+						String closeReq = "INSERT INTO Closed_Request (rid, mid, date, comment, bill) VALUES ( " + "'" + serviceID + "' , '" + mechID + "' , '" + closeDateOK + "' , '" + comment +  "' ,  '"+ bill +"');";
 						esql.executeUpdate(closeReq);
 						return;
 
