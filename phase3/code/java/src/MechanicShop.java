@@ -382,7 +382,7 @@ public class MechanicShop{
 			
 			String ownsCar = "INSERT INTO Owns(ownership_id, customer_id, car_vin) VALUES ('" + ownership_id + "', '" + custID + "', '" + vin + "')";
 			esql.executeUpdate(ownsCar);
-
+			ownership_id = "";
 			
 			//ADDED INDEX
 			/*String CarIndex = "CREATE INDEX carVin_index ON Car [USING BTREE] (vin)";
