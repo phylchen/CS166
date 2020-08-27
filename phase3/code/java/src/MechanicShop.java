@@ -544,7 +544,7 @@ public class MechanicShop{
 		}		
 	}
 	
-	public static void ListCarsBefore1995With50000Miles(MechanicShop esql){//8
+	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
 		try{
          		String query = "SELECT C.make, C.model, C.year FROM Car C, Service_Request SR WHERE C.vin = SR.car_vin AND C.year < 1995 AND SR.odometer < 50000";
 			
