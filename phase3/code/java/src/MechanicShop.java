@@ -451,9 +451,12 @@ public class MechanicShop{
              
 			System.out.print("Enter complaint: ");
          		String complaint = in.readLine();
-                         
-			String q = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer, complain) VALUES ('" + cid + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
-            		esql.executeUpdate(q);
+                        
+			System.out.print("Make request id: ");
+			String rid = in.readLine();
+				
+			String newRequest = "INSERT INTO Service_Request (rid, customer_id, car_vin, date, odometer, complain) VALUES ('" + rid + "', '" + cid + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
+            		esql.executeUpdate(newRequest);
         		}  
             
       		  } catch(Exception e){
