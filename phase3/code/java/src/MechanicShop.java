@@ -398,7 +398,7 @@ public class MechanicShop{
 			
         		if (esql.executeQuery(getName) == 0) {
         			System.out.println("ERROR: Customer not found. Create new customer? Y/N");
-				String UserDecision = in.readLine();
+				UserDecision = in.readLine();
 				if(UserDecision.equals ("Y") || UserDecision.equals ("y")){
         			AddCustomer(esql); 
 				}
