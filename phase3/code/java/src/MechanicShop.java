@@ -375,6 +375,7 @@ public class MechanicShop{
 	        
 	        	esql.executeUpdate(carInfo);
 			
+			//ADDED INDEX
 			String CarIndex = "CREATE INDEX carVin_index ON Car (vin)";
 			esql.executeUpdate(CarIndex);
 		}
@@ -393,10 +394,17 @@ public class MechanicShop{
         		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
 			System.out.println(nameResults);
   
+        		String UserDecision = "";
+			
         		if (esql.executeQuery(getName) == 0) {
-        			System.out.print("ERROR: Customer not found");
+        			System.out.println("ERROR: Customer not found. Create new customer? Y/N");
+				String UserDecision = in.readLine();
+				if(UserDecision.equals ("Y") || UserDecision.equals ("y")){
         			AddCustomer(esql); 
+				}
+				else{
         			return;        
+				}
         		}
        
 			System.out.println ("Choose a customer id: ");
@@ -407,7 +415,6 @@ public class MechanicShop{
 			List<List<String>> carResult = esql.executeQueryAndReturnResult(getCar);
           		System.out.println(carResult);
 
-        		String UserDecision = "";
         		while(!UserDecision.equals("0") && !UserDecision.equals("0"))
         		{
             		System.out.print("Enter 0 to choose a listed car OR enter 1 to add a new car\n");
