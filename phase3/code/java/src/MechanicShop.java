@@ -23,7 +23,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
-
 /**
  * This class defines a simple embedded SQL utility class that is designed to
  * work with PostgreSQL JDBC drivers.
@@ -521,8 +520,8 @@ public class MechanicShop{
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
 		try{
 			String query = "SELECT CR.date, CR.comment, CR.bill FROM Closed_Request CR WHERE CR.bill < 100;";
-			int result = esql.executeQueryAndPrintResult(query);
-			System.out.println("result: " + result);
+			int rowCount = esql.executeQueryAndPrintResult(query);
+			System.out.println("total row(s): " + rowCount);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -533,8 +532,8 @@ public class MechanicShop{
 		try{
 			String query = "SELECT cars.fname, cars.lname, cars.num_of_cars FROM (SELECT O.customer_id, C.fname, C.lname, COUNT(*) num_of_cars FROM Owns O, Customer C WHERE C.id = O.customer_id GROUP BY O.customer_id, C.fname, C.lname) AS cars WHERE num_of_cars > 20";
 
-			int result = esql.executeQueryAndPrintResult(query);
-                        System.out.println("result: " + result);
+			int rowCount = esql.executeQueryAndPrintResult(query);
+                        System.out.println("total row(s): " + rowCount);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -545,8 +544,8 @@ public class MechanicShop{
 		try{
          		String query = "SELECT C.make, C.model, C.year FROM Car C, Service_Request SR WHERE C.vin = SR.car_vin AND C.year < 1995 AND SR.odometer < 50000";
 			
-			int result = esql.executeQueryAndPrintResult(query);
-                        System.out.println("result: " + result);
+			int rowCount = esql.executeQueryAndPrintResult(query);
+                        System.out.println("total row(s): " + rowCount);
                 }
                 catch(Exception e){
                         System.out.println(e.getMessage());
@@ -554,7 +553,22 @@ public class MechanicShop{
 	}
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
-		//
+		try{
+			System.out.print("Enter the k number of cars you wish to display: ");
+			String k = in.readLine();
+			while(k.length() == 0 || !k.matches("[0-9]+")){	
+           			System.out.print("\nThe value you entered for k is invalid. Enter a different value: ");
+         			k = in.readLine();
+         		}
+	
+			String query = "SELECT C.make, C.model, COUNT(*) FROM Car C, Service_Request SR WHERE C.vin = SR.car_vin GROUP BY C.vin ORDER BY COUNT(*) DESC LIMIT " + k;
+			
+			int rowCount = esql.executeQueryAndPrintResult(query);
+                        System.out.println("total row(s): " + rowCount);
+                }
+                catch(Exception e){
+                        System.out.println(e.getMessage());
+                }
 		
 	}
 	
@@ -562,8 +576,8 @@ public class MechanicShop{
 		try{
 			String query = "SELECT C.fname , C.lname, total_bill FROM Customer C, (SELECT SR.customer_id, SUM(CR.bill) AS total_bill FROM Closed_Request CR, Service_Request SR WHERE CR.rid = SR.rid GROUP BY SR.customer_id) AS tmp WHERE C.id = tmp.customer_id ORDER BY tmp.total_bill DESC";
 
-		int result = esql.executeQueryAndPrintResult(query);
-                        System.out.println("result: " + result);
+			int rowCount = esql.executeQueryAndPrintResult(query);
+                        System.out.println("total row(s): " + rowCount);
                 }
                 catch(Exception e){
                         System.out.println(e.getMessage());
