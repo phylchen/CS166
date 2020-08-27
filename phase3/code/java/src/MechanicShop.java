@@ -320,8 +320,9 @@ public class MechanicShop{
 			
 			esql.executeUpdate(customerInfo);
 			//ADDED INDEX 
-			String CustomerIndex = "CREATE INDEX custID_index ON Customer (id)";
+			/*String CustomerIndex = "CREATE INDEX custID_index ON Customer [USING BTREE] (id)";
 			esql.executeUpdate(CustomerIndex);
+			*/
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -344,8 +345,8 @@ public class MechanicShop{
                         esql.executeUpdate(mechanicInfo);
 			
 			//ADDED INDEX
-			String MechanicIndex = "CREATE INDEX mechID_index ON Mechanic (id)";
-			esql.executeUpdate(MechanicIndex);
+			/*String MechanicIndex = "CREATE INDEX mechID_index ON Mechanic [USING BTREE] (id)";
+			esql.executeUpdate(MechanicIndex);*/
                 }
                 catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -384,8 +385,8 @@ public class MechanicShop{
 
 			
 			//ADDED INDEX
-			String CarIndex = "CREATE INDEX carVin_index ON Car (vin)";
-			esql.executeUpdate(CarIndex);
+			/*String CarIndex = "CREATE INDEX carVin_index ON Car [USING BTREE] (vin)";
+			esql.executeUpdate(CarIndex);*/
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage());
