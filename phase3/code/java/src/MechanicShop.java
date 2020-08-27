@@ -375,6 +375,13 @@ public class MechanicShop{
 	        
 	        	esql.executeUpdate(carInfo);
 			
+			SELECT ownership_id FROM Owns ORDER BY ownership_id"
+			
+			//OWNS
+			String ownsCar = "INSERT INTO Owns(ownership_id, customer_id, car_vin) VALUES (" + ownershipID + ", " + custID + ", '" + vin + "')";
+			esql.executeUpdate(ownsCar);
+
+			
 			//ADDED INDEX
 			String CarIndex = "CREATE INDEX carVin_index ON Car (vin)";
 			esql.executeUpdate(CarIndex);
@@ -390,7 +397,10 @@ public class MechanicShop{
         		String lname = in.readLine();
         
         		String getName = "SELECT fname, lname, id FROM Customer WHERE lname = '" + lname + "'";
-
+			String custId = in.readLine();
+          		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
+			System.out.println(nameResults);
+  			
         		String UserDecision = "";
         		
 			
@@ -404,13 +414,6 @@ public class MechanicShop{
         			return;        
 				}
         		}
-       
-			System.out.println ("Choose a customer id: ");
-            		String custId = in.readLine();
-          		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
-			System.out.println(nameResults);
-  
-
         		while(!UserDecision.equals("0") && !UserDecision.equals("1"))
         		{
             		System.out.print("Enter 0 to choose a listed car OR enter 1 to add a new car\n");
@@ -433,6 +436,7 @@ public class MechanicShop{
             		
 			vin = in.readLine();
         		
+			
             		System.out.println ("Create new service request: ");
             
             		System.out.println("Enter date: ");
@@ -443,8 +447,7 @@ public class MechanicShop{
              
 			System.out.println("Enter complaint: ");
          		String complaint = in.readLine();
-             
-            		String q = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer, complain) VALUES ('" + custId + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
+                         		String q = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer, complain) VALUES ('" + custId + "' , '" + vin + "' , '" + date + "' , '" + odometer + "' , '" + complaint + "')";
             		esql.executeUpdate(q);
         		}  
             
