@@ -516,7 +516,8 @@ public class MechanicShop{
 		catch(Exception e){
 			System.out.println(e.getMessage());
 		}	
-	} 
+	}
+ 
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
 		try{
 			String query = "SELECT CR.date, CR.comment, CR.bill FROM Closed_Request CR WHERE CR.bill < 100;";
