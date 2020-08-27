@@ -415,7 +415,7 @@ public class MechanicShop{
 			List<List<String>> carResult = esql.executeQueryAndReturnResult(getCar);
           		System.out.println(carResult);
 
-        		while(!UserDecision.equals("0") && !UserDecision.equals("0"))
+        		while(!UserDecision.equals("0") && !UserDecision.equals("1"))
         		{
             		System.out.print("Enter 0 to choose a listed car OR enter 1 to add a new car\n");
             		UserDecision = in.readLine();
@@ -424,13 +424,11 @@ public class MechanicShop{
       			{
         			AddCar(esql);
         			return;
-		        }
-			String vin  = "";
-            
+		        }           
     			
         		else if(UserDecision.equals("0"))
         		{
-
+			String vin  = "";
             		System.out.println ("Choose vin: ");
             		vin = in.readLine();
         
