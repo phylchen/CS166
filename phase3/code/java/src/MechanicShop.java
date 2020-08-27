@@ -372,10 +372,7 @@ public class MechanicShop{
 	        	String year = in.readLine();
 
 	        	String carInfo = "INSERT INTO Car VALUES ('" + vin + "' , '" + make + "' , '" + model + "' , " + year + ")";
-	        
-	        	esql.executeUpdate(carInfo);
-			
-			SELECT ownership_id FROM Owns ORDER BY ownership_id"
+	              	esql.executeUpdate(carInfo);
 			
 			//OWNS
 			String ownsCar = "INSERT INTO Owns(ownership_id, customer_id, car_vin) VALUES (" + ownershipID + ", " + custID + ", '" + vin + "')";
