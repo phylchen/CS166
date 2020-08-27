@@ -391,6 +391,7 @@ public class MechanicShop{
         
         		String getName = "SELECT fname, lname, id FROM Customer WHERE lname = '" + lname + "'";
 
+        		String UserDecision = "";
         		
 			
         		if (esql.executeQuery(getName) == 0) {
@@ -409,9 +410,6 @@ public class MechanicShop{
           		List<List<String>> nameResults = esql.executeQueryAndReturnResult(getName);
 			System.out.println(nameResults);
   
-        		String UserDecision = "";
-            
-        		
 
         		while(!UserDecision.equals("0") && !UserDecision.equals("1"))
         		{
